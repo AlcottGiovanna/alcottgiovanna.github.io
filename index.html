@@ -146,6 +146,21 @@ thead th{background:#f7fafb;font-size:12px;letter-spacing:.06em;text-transform:u
   .viewer-stage{height:92vh;width:calc(100vw - 24px);margin:auto}.viewer-scroll img{width:1450px}
 }
 
+
+.contact-section{background:#eef5f4}
+.contact-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(380px,1.1fr);gap:56px;align-items:start}
+.contact-copy h2{margin:0 0 18px;font-size:clamp(36px,4.5vw,58px);line-height:1.02;letter-spacing:-.045em}
+.contact-copy p:not(.eyebrow){color:var(--muted);font-size:16px;line-height:1.75;max-width:52ch}
+.contact-email{display:inline-block;margin-top:16px;font-size:24px;font-weight:800;letter-spacing:-.03em;color:#0e5860}
+.contact-form{background:#fff;border:1px solid var(--line);border-radius:24px;padding:24px;display:grid;gap:16px}
+.contact-form label{display:grid;gap:8px}
+.contact-form label span{font-size:12px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#6f8290}
+.contact-form input,.contact-form textarea{width:100%;border:1px solid #d7e1e5;border-radius:14px;padding:14px 15px;font:inherit;color:var(--ink);background:#fbfcfc;outline:none}
+.contact-form input:focus,.contact-form textarea:focus{border-color:#56bfc0;box-shadow:0 0 0 3px rgba(55,199,198,.12)}
+.contact-form textarea{resize:vertical}
+.contact-note{color:#7b8b95;line-height:1.5}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr;gap:28px}.contact-email{font-size:20px}}
+
 </style>
 </head>
 <body>
@@ -162,7 +177,7 @@ thead th{background:#f7fafb;font-size:12px;letter-spacing:.06em;text-transform:u
         <a href="#project">Project</a>
         <a href="#process">Process Explorer</a>
         <a href="#hydraulics">Hydraulics</a>
-        <a href="#drawings">Drawings</a>
+        <a href="#drawings">Drawings</a><a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -176,7 +191,7 @@ thead th{background:#f7fafb;font-size:12px;letter-spacing:.06em;text-transform:u
           <p class="hero-lede">A 100,000 m³/day engineering design covering process selection, hydraulic profile calculation, equipment sizing, and 11 engineering drawings.</p>
           <div class="hero-actions">
             <a class="btn primary" href="#process">Explore the process flow</a>
-            <a class="btn secondary" href="#drawings">View engineering drawings</a>
+            <a class="btn secondary" href="#drawings">View engineering drawings</a><a class="btn secondary" href="mailto:17602981211@163.com?subject=Engineering%20Portfolio%20Inquiry">Contact me</a>
           </div>
           <div class="hero-metrics">
             <div><strong>100,000</strong><span>m³/day</span></div>
@@ -302,6 +317,34 @@ thead th{background:#f7fafb;font-size:12px;letter-spacing:.06em;text-transform:u
       </div>
       <div class="container gallery" id="gallery"></div>
     </section>
+  
+    <section class="section contact-section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <p class="eyebrow">CONTACT</p>
+          <h2>Interested in my engineering work?</h2>
+          <p>If you would like to discuss wastewater process design, environmental engineering, internships, or career opportunities, feel free to get in touch.</p>
+          <a class="contact-email" href="mailto:17602981211@163.com?subject=Engineering%20Portfolio%20Inquiry">17602981211@163.com</a>
+        </div>
+        <form class="contact-form" id="contactForm">
+          <label>
+            <span>Your name</span>
+            <input type="text" id="contactName" placeholder="Name" required>
+          </label>
+          <label>
+            <span>Your email</span>
+            <input type="email" id="contactEmail" placeholder="name@example.com" required>
+          </label>
+          <label>
+            <span>Message</span>
+            <textarea id="contactMessage" rows="6" placeholder="Write a message..." required></textarea>
+          </label>
+          <button class="btn primary" type="submit">Send via email</button>
+          <small class="contact-note">This opens your default email app. No form data is stored on this website.</small>
+        </form>
+      </div>
+    </section>
+
   </main>
 
   <div class="viewer" id="viewer" aria-hidden="true">
@@ -523,6 +566,20 @@ document.addEventListener('keydown', e => {
   if(e.key === 'ArrowLeft') step(-1);
   if(e.key === 'ArrowRight') step(1);
 });
+
+
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('contactName').value.trim();
+    const email = document.getElementById('contactEmail').value.trim();
+    const message = document.getElementById('contactMessage').value.trim();
+    const subject = `Engineering Portfolio Inquiry from ${name || 'Website Visitor'}`;
+    const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+    window.location.href = `mailto:17602981211@163.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+}
 
 </script>
 </body>
